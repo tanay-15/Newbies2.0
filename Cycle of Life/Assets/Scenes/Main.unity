@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 167225437}
   - component: {fileID: 167225438}
   - component: {fileID: 167225421}
+  - component: {fileID: 167225439}
   m_Layer: 0
   m_Name: Flowchart 1
   m_TagString: Untagged
@@ -295,7 +296,7 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 167225420}
+  - {fileID: 167225429}
   selectedCommands: []
   variables:
   - {fileID: 167225438}
@@ -367,7 +368,7 @@ MonoBehaviour:
   - {fileID: 167225432}
 --- !u!114 &167225421
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 167225417}
@@ -566,6 +567,7 @@ MonoBehaviour:
   eventHandler: {fileID: 0}
   commandList:
   - {fileID: 167225428}
+  - {fileID: 167225439}
   - {fileID: 167225436}
   - {fileID: 167225435}
 --- !u!114 &167225430
@@ -776,6 +778,32 @@ MonoBehaviour:
   scope: 1
   key: Var
   value: {fileID: 413054412}
+--- !u!114 &167225439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 167225417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 17
+  indentLevel: 0
+  storyText: im Tanay
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1 &201730197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,7 +1302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eba930cb233f8540864125506bc90b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apple: {fileID: 156634733}
 --- !u!1 &710261039
 GameObject:
   m_ObjectHideFlags: 0
