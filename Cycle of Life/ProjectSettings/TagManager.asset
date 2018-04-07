@@ -8,6 +8,9 @@ TagManager:
   - Door
   - Key
   - RoomChange
+  - Enemy
+  - Laser
+  - NPC
   layers:
   - Default
   - TransparentFX
