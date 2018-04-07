@@ -40,6 +40,11 @@ public class ObjectPickup : MonoBehaviour {
         {
             opening_door = true;
         }
+
+        if(collider.gameObject.tag == "Player")
+        {
+
+        }
     }
 
     void PickingUp()
