@@ -9,14 +9,13 @@ public class NPCscript : MonoBehaviour {
     private float waitTime;
     public float startWaitTime;
     Transform currentPatrolPoint;
-    int currentPatrolIndex;
     int randomSpot;
 
 	// Use this for initialization
 	void Start () {
         waitTime = startWaitTime;
         randomSpot = Random.Range(0, patrolPoints.Length);
-        currentPatrolIndex = 0;
+        
        // currentPatrolPoint = patrolPoints[currentPatrolIndex];
 		
 	}
