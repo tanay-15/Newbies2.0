@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fungus;
 
 public class ObjectPickup : MonoBehaviour {
 
@@ -10,6 +11,10 @@ public class ObjectPickup : MonoBehaviour {
     int keys = 0;
     bool opening_door = false;
     public Inventory invent;
+    public Flowchart flowchart;
+    public Block block;
+    private bool picks;
+    private bool picking_sand;
     
 
 	void Start () {
@@ -24,13 +29,14 @@ public class ObjectPickup : MonoBehaviour {
         OpeningDoor();
 	}
 
-    public void OnCollisionEnter2D(Collision2D collider)
+    public void OnCollisionEnter2D(UnityEngine.Collision2D collider)
     {
         if(collider.gameObject.tag == "PickUp")
         {
-           
+          //  flowchart.ExecuteBlock("Sandwich");
+            picking_sand = flowchart.GetBooleanVariable("picking");
             picking = true;
-           
+            
         }
 
         if(collider.gameObject.tag == "Key")
@@ -52,20 +58,46 @@ public class ObjectPickup : MonoBehaviour {
 
     void PickingUp()
     {
+        if (picking_sand == true)
+        {
+            flowchart.ExecuteBlock("PickingUp");
+            picks = flowchart.GetBooleanVariable("picked");
+           // Debug.Log(picks);
+        }
+
+
         if (Input.GetMouseButtonDown(0) && (picking == true))
         {
+
+
             Vector2 ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray, Vector2.zero);
             if (hit.collider != null)
             {
                 //object gets destroyed
                 //set up a variable before destroying for player inventory system
-                Debug.Log(hit.collider.gameObject.name);
-                invent.AddItem(0);
-                Destroy(hit.collider.gameObject);
-                picking = false;
+                //   Debug.Log(hit.collider.gameObject.name);
+
+                // picks = flowchart.GetBooleanVariable("picked");
+
+
+                if ((picks == true) && (picking == true))
+                {
+                    invent.AddItem(0);
+                    Destroy(hit.collider.gameObject);
+                    picking = false;
+                }
             }
-        }
+
+
+        }    
+                
+                    
+                
+
+               
+           // }
+        
 
         if (Input.GetMouseButtonDown(0) && (picking_key == true))
         {

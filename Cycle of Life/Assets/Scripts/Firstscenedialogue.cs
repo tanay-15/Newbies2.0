@@ -13,6 +13,6 @@ public class Firstscenedialogue : Command {
 
     public void ChangeScene()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Phase1");
     }
 }
