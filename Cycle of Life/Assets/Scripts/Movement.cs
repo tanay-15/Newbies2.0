@@ -28,6 +28,7 @@ public class Movement : MonoBehaviour {
         {
             playerAnimation.SetFloat("speedx", Mathf.Abs(horizontal));
         }
+
        if(dirVertical)
         {
             playerAnimation.SetFloat("speedy", Mathf.Abs(vertical));
