@@ -4,21 +4,50 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour {
     public float speed;
-    bool facingRight;
+    bool dirVertical;
+    bool dirHorizontal;
+    
     Rigidbody2D playerBody;
     Animator playerAnimation;
 	// Use this for initialization
 	void Start () {
         playerBody = GetComponent<Rigidbody2D>();
-        //playerAnimation = GetComponent<Animator>();
-        facingRight = true; 
+        playerAnimation = GetComponent<Animator>();
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
         float horizontal = Input.GetAxis("Horizontal");
-        //playerAnimation.SetFloat("speed", Mathf.Abs(horizontal));
+        dirHorizontal = true;
+       // playerAnimation.SetFloat("speed", Mathf.Abs(horizontal));
         float vertical = Input.GetAxis("Vertical");
+        dirVertical = true;
+
+       if(dirHorizontal)
+        {
+            playerAnimation.SetFloat("speedx", Mathf.Abs(horizontal));
+        }
+       if(dirVertical)
+        {
+            playerAnimation.SetFloat("speedy", Mathf.Abs(vertical));
+        }
+
+        dirHorizontal = false;
+        dirVertical = false;
+
+        //if (Mathf.Abs(horizontal) > 0.1f)
+        //{
+        //    playerAnimation.SetFloat("speed", Mathf.Abs(horizontal));
+           
+
+        //}
+        //else if (Mathf.Abs(vertical) > 0.1f)
+        //{
+        //    playerAnimation.SetFloat("speed", Mathf.Abs(vertical));
+            
+        //}
+
         handleMovement(horizontal,vertical);
        
 	}
