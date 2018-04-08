@@ -12,6 +12,8 @@ TagManager:
   - Laser
   - NPC
   - TriggerConvo
+  - Dog
+  - Bully
   layers:
   - Default
   - TransparentFX

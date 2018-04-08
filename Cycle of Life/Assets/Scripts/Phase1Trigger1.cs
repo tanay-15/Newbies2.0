@@ -15,6 +15,7 @@ public class Phase1Trigger1 : MonoBehaviour{
     {
         if(collision.gameObject.tag == "Player")
         {
+            Destroy(this.gameObject);
             flowchart.ExecuteBlock(BlockName);
         }
     }

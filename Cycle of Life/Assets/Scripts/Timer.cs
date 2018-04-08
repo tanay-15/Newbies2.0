@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Timer : MonoBehaviour {
     public Text timerText;
-    public float myTimer = 60;
+    public float myTimer;
 	// Use this for initialization
 	void Start () {
         timerText = GetComponent<Text>();
@@ -12,9 +12,12 @@ public class Timer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        myTimer -= Time.deltaTime;
-        timerText.text = myTimer.ToString("f0"); //f0 is for the number of decimal places.
-        print(myTimer);
+        //startTimer();
 	}
- 
+    public void startTimer()
+    {
+       
+        //print(myTimer);
+
+    }
 }

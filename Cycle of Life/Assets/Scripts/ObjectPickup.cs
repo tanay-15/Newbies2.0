@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Fungus;
 
 public class ObjectPickup : MonoBehaviour {
@@ -12,9 +13,20 @@ public class ObjectPickup : MonoBehaviour {
     bool opening_door = false;
     public Inventory invent;
     public Flowchart flowchart;
-    public Block block;
+    
     private bool picks;
     private bool picking_sand;
+    private bool dogNear;
+    private bool doggo;
+    private bool isdognear;
+    private bool bulask;
+    private bool bulgive;
+    private bool bularea;
+    public bool endFlag;
+    public string BlockName1;
+    public string BlockName2;
+    public string BlockName3;
+    public Image FoodImage;
     
 
 	void Start () {
@@ -27,7 +39,80 @@ public class ObjectPickup : MonoBehaviour {
 
         PickingUp();
         OpeningDoor();
-	}
+        DogHelp();
+        BullyFood();
+
+    }
+
+
+    public void DogHelp()
+    {
+
+        if ((dogNear == true))
+        {
+            flowchart.ExecuteBlock(BlockName2);
+            doggo = flowchart.GetBooleanVariable("helped");
+        }
+
+
+
+        if (Input.GetMouseButtonDown(0) && (isdognear == true))
+        {
+
+
+            Vector2 ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(ray, Vector2.zero);
+            if (hit.collider != null)
+            {
+
+
+
+                if ((doggo == true) && (isdognear == true))
+                {
+                    Debug.Log("Dog helped!");
+                    FoodImage.enabled = false;
+                  //  Destroy(hit.collider.gameObject);
+                      isdognear = false;
+                }
+            }
+
+
+        }
+    }
+    void BullyFood()
+    {
+        if (bulask == true)
+        {
+            flowchart.ExecuteBlock(BlockName3);
+            bulgive = flowchart.GetBooleanVariable("paidBully");
+        }
+
+
+       // if (Input.GetMouseButtonDown(0) && (bularea == true))
+       // {
+
+
+          //  Vector2 ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+          //  RaycastHit2D hit = Physics2D.Raycast(ray, Vector2.zero);
+          //  if (hit.collider != null)
+           // {
+
+
+
+                if ((bulgive == true)&&(bularea == true))
+                {
+                    Debug.Log("Dog helpshjldffed!");
+                    FoodImage.enabled = false;
+                    //  Destroy(hit.collider.gameObject);
+                    bularea = false;
+                    endFlag = true;
+                }
+            //}
+
+
+      //  }
+
+    }
 
     public void OnCollisionEnter2D(UnityEngine.Collision2D collider)
     {
@@ -38,8 +123,19 @@ public class ObjectPickup : MonoBehaviour {
             picking = true;
             
         }
+        if(collider.gameObject.tag == "Dog")
+        {
+            dogNear = flowchart.GetBooleanVariable("helpDog");
+            isdognear = true;
+        }
 
-        if(collider.gameObject.tag == "Key")
+        if (collider.gameObject.tag == "Bully")
+        {
+            bulask = flowchart.GetBooleanVariable("bullyAsk");
+            bularea = true;
+        }
+
+        if (collider.gameObject.tag == "Key")
         {
             picking_key = true;
            
@@ -54,17 +150,22 @@ public class ObjectPickup : MonoBehaviour {
         {
 
         }
+
+       
+       
     }
+
+  
 
     void PickingUp()
     {
         if (picking_sand == true)
         {
-            flowchart.ExecuteBlock("PickingUp");
+            flowchart.ExecuteBlock(BlockName1);
             picks = flowchart.GetBooleanVariable("picked");
            // Debug.Log(picks);
         }
-
+        
 
         if (Input.GetMouseButtonDown(0) && (picking == true))
         {
@@ -74,11 +175,7 @@ public class ObjectPickup : MonoBehaviour {
             RaycastHit2D hit = Physics2D.Raycast(ray, Vector2.zero);
             if (hit.collider != null)
             {
-                //object gets destroyed
-                //set up a variable before destroying for player inventory system
-                //   Debug.Log(hit.collider.gameObject.name);
-
-                // picks = flowchart.GetBooleanVariable("picked");
+                
 
 
                 if ((picks == true) && (picking == true))
@@ -99,7 +196,7 @@ public class ObjectPickup : MonoBehaviour {
            // }
         
 
-        if (Input.GetMouseButtonDown(0) && (picking_key == true))
+     /*   if (Input.GetMouseButtonDown(0) && (picking_key == true))
         {
             Vector2 ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray, Vector2.zero);
@@ -113,7 +210,7 @@ public class ObjectPickup : MonoBehaviour {
                 keys += 1;
                 Debug.Log(keys);
             }
-        }
+        }*/
     }
 
     void OpeningDoor()
