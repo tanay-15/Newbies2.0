@@ -14,6 +14,7 @@ TagManager:
   - TriggerConvo
   - Dog
   - Bully
+  - Button
   layers:
   - Default
   - TransparentFX
