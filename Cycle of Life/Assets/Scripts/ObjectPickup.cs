@@ -9,9 +9,12 @@ public class ObjectPickup : MonoBehaviour {
     bool picking_key = false;
     int keys = 0;
     bool opening_door = false;
+    public Inventory invent;
+    
 
 	void Start () {
-		
+
+        //invent = GetComponent<Inventory>();
 	}
 	
 	// Update is called once per frame
@@ -57,6 +60,8 @@ public class ObjectPickup : MonoBehaviour {
             {
                 //object gets destroyed
                 //set up a variable before destroying for player inventory system
+                Debug.Log(hit.collider.gameObject.name);
+                invent.AddItem(0);
                 Destroy(hit.collider.gameObject);
                 picking = false;
             }
@@ -71,6 +76,7 @@ public class ObjectPickup : MonoBehaviour {
                 //object gets destroyed
                 //set up a variable before destroying for player inventory system
                 Destroy(hit.collider.gameObject);
+                invent.AddItem(1);
                 picking_key = false;
                 keys += 1;
                 Debug.Log(keys);
